@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "appNLDev": {
+    "appnldev": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -57,10 +57,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "appNLDev:build:production"
+              "buildTarget": "appnldev:build:production"
             },
             "development": {
-              "buildTarget": "appNLDev:build:development"
+              "buildTarget": "appnldev:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +68,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "appNLDev:build"
+            "buildTarget": "appnldev:build"
           }
         },
         "test": {
@@ -88,6 +88,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "appnldev:build:production",
+              "serveTarget": "appnldev:serve:production"
+            },
+            "development": {
+              "buildTarget": "appnldev:build:development",
+              "serveTarget": "appnldev:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

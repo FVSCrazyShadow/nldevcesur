@@ -1,0 +1,10 @@
+<div class="col-md-4 mb-3">
+  <div class="card">
+    <img [src]="app.image" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ app.name }}</h5>
+      <p class="card-text">{{ app.description }}</p>
+      <a [routerLink]="app.link" class="btn btn-primary">Ir a {{ app.name }}</a>
+    </div>
+  </div>
+</div>

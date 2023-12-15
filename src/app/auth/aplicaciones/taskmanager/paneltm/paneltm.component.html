@@ -1,0 +1,33 @@
+<div class="container mb-5 mt-5">
+  <div class="row">
+    <!-- Columna de Proyectos -->
+    <div class="col">
+      <h3>Proyectos</h3>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-action" *ngFor="let proyecto of proyectos" (click)="onItemClick(proyecto)">
+          {{ proyecto }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Columna de Tareas -->
+    <div class="col">
+      <h3>Tareas</h3>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-action" *ngFor="let tarea of tareas" (click)="onItemClick(tarea)">
+          {{ tarea }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Columna de Usuarios -->
+    <div class="col">
+      <h3>Usuarios</h3>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-action" *ngFor="let usuario of usuarios" (click)="onItemClick(usuario)">
+          {{ usuario }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

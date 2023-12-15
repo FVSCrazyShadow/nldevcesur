@@ -1,0 +1,17 @@
+<app-head></app-head>
+<h1>Dashboard</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mb-3" *ngFor="let opcion of opciones">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ opcion.titulo }}</h5>
+          <p class="card-text">{{ opcion.descripcion }}</p>
+          <a href={{opcion.ruta}} class="btn btn-primary">Seleccionar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-foot></app-foot>

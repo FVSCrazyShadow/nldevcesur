@@ -1,0 +1,13 @@
+.logo-container {
+  margin-top: 20px; /* Ajusta la separación superior */
+  margin-bottom: 20px; /* Ajusta la separación inferior */
+}
+
+.logo {
+  margin-top: 10px; /* Ajuste separación superior del logo dentro del contenedor */
+  margin-bottom: 10px; /* Ajuste separación inferior del logo dentro del contenedor */
+}
+
+.descripcion {
+  margin-bottom: 20px; /* Ajusta la separación inferior de la descripción */
+}
