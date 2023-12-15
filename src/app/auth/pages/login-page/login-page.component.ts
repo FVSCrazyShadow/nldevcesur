@@ -1,8 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { HeadComponent } from "../../../head/head.component";
 import { FootComponent } from "../../../footer/foot/foot.component";
 import { FormsModule, NgModel } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Auth } from "@angular/fire/auth";
 
 @Component({
   templateUrl: 'login-page.component.html',
@@ -12,6 +13,9 @@ import { Router } from "@angular/router";
 })
 
 export class LoginPageComponent{
+
+  private auth: Auth = inject(Auth);
+
   username: string = '';
   password: string = '';
 
@@ -21,6 +25,8 @@ export class LoginPageComponent{
 
   login() {
     // llamar a servicio protegido, TODO: CAMBIAR REDIRECT SIN BACKEND
+
+    console.log(this.auth);
 
     if(this.username === 'admin' && this.password ==='admin'){
       this.router.navigate(['dashboard']);
