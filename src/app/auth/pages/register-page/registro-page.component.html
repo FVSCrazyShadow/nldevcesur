@@ -1,0 +1,26 @@
+<app-head></app-head>
+<div class="container mt-5 mb-5">
+  <h2>Registro de Usuario</h2>
+  <form (ngSubmit)="onSubmit()" #registroForm="ngForm">
+    <div class="form-group">
+      <label for="email">Correo electrónico:</label>
+      <input type="email" class="form-control" id="email" name="email" required email [(ngModel)]="usuario.email">
+      <div *ngIf="registroForm.controls['email'].invalid && (registroForm.controls['email'].dirty || registroForm.controls['email'].touched)">
+        <small class="text-danger" *ngIf="registroForm.controls['email'].errors?.['required']">El correo electrónico es obligatorio.</small>
+        <small class="text-danger" *ngIf="registroForm.controls['email'].errors?.['email']">Ingrese un correo electrónico válido.</small>
+      </div>
+    </div>
+
+    <div class="form-group mb-1">
+      <label for="password">Contraseña:</label>
+      <input type="password" class="form-control" id="password" name="password" required minlength="6" [(ngModel)]="usuario.password">
+      <div *ngIf="registroForm.controls['password'].invalid && (registroForm.controls['password'].dirty || registroForm.controls['password'].touched)">
+        <small class="text-danger" *ngIf="registroForm.controls['password'].errors?.['required']">La contraseña es obligatoria.</small>
+        <small class="text-danger" *ngIf="registroForm.controls['password'].errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="registroForm.invalid">Registrarse</button>
+  </form>
+</div>
+<app-foot></app-foot>

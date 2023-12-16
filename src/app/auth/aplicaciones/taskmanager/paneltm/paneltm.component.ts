@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-taskmanager-paneltm',
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class TaskManagerPanelTM implements OnInit {
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() { }
 
@@ -19,5 +20,15 @@ export class TaskManagerPanelTM implements OnInit {
 
   onItemClick(item: string): void {
     console.log(`Elemento clicado: ${item}`);
+  }
+
+  logOut() {
+    this.auth.logOut()
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error =>{
+      console.log(error)
+    })
   }
 }

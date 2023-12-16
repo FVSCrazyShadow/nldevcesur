@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HeadComponent } from '../../../head/head.component';
 import { FootComponent } from '../../../footer/foot/foot.component';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -38,8 +39,18 @@ export class DashboardPageComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  logOut() {
+    this.auth.logOut()
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error =>{
+      console.log(error)
+    })
   }
 }

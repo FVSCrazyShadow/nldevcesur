@@ -8,7 +8,7 @@ import { initializeApp } from 'firebase/app';
 import { provideDatabase } from '@angular/fire/database';
 import { getDatabase } from 'firebase/database';
 import { provideAuth } from '@angular/fire/auth';
-import { getAuth } from 'firebase/auth';
+import { GoogleAuthProvider, getAuth } from 'firebase/auth';
 
 
 
@@ -19,7 +19,7 @@ import { getAuth } from 'firebase/auth';
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideDatabase(() => getDatabase()),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
   ]
 })
 

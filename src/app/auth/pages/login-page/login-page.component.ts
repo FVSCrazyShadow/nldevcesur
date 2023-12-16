@@ -3,36 +3,69 @@ import { HeadComponent } from "../../../head/head.component";
 import { FootComponent } from "../../../footer/foot/foot.component";
 import { FormsModule, NgModel } from "@angular/forms";
 import { Router } from "@angular/router";
-import { Auth } from "@angular/fire/auth";
+import { Auth, GoogleAuthProvider, signInWithPopup } from "@angular/fire/auth";
+import { getAuth } from "firebase/auth";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   templateUrl: 'login-page.component.html',
   standalone: true,
-  imports: [HeadComponent,FootComponent,FormsModule],
+  imports: [HeadComponent, FootComponent, FormsModule],
   styles: ''
 })
 
-export class LoginPageComponent{
+export class LoginPageComponent {
 
-  private auth: Auth = inject(Auth);
+  /* private auth: Auth = inject(Auth); SERVICIO DE GOOGLE NO EL AUTH NUESTRO*/
+  private googleService: GoogleAuthProvider = new GoogleAuthProvider();
 
-  username: string = '';
-  password: string = '';
+  email = '';
+  password = '';
 
-  constructor(private router: Router){
+  constructor(private auth: AuthService, private router: Router) {
 
   }
 
   login() {
-    // llamar a servicio protegido, TODO: CAMBIAR REDIRECT SIN BACKEND
+    let usuario = {
+      email : this.email,
+      password : this.password
+    }
 
-    console.log(this.auth);
+    console.log(usuario);
 
-    if(this.username === 'admin' && this.password ==='admin'){
-      this.router.navigate(['dashboard']);
-    }//TODO: BORRAR ESTO, SOLO PARA TEST
+    this.auth.login(usuario)
+    .then(response => {
+      console.log(response)
+      this.router.navigate(['dashboard'])
+    })
+    .catch(error => console.log(error))
+  }
 
-    console.log('Usuario:', this.username);
-    console.log('Contraseña:', this.password);
+  registrarUsuario(){
+    this.router.navigate(['registro']);
+  }
+
+  loginWithGoogle() {
+    /* signInWithPopup(this.auth, this.googleService)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        console.log(`TEST DENTRO LOGINWITHGOOGLE ${result}`);
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      }); */
   }
 }

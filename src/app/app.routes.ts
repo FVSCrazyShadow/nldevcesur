@@ -6,7 +6,8 @@ import { ServiciosPageComponent } from './index/pages/servicios-page/servicios-p
 import { LoginPageComponent } from './auth/pages/login-page/login-page.component';
 import { DashboardPageComponent } from './auth/pages/dashboard-page/dashboard-page.componente';
 import { TaskManager } from './auth/aplicaciones/taskmanager/taskmanager.component';
-
+import { RegistroPageComponent } from './auth/pages/register-page/registro-page.component';
+import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
 
 export const routes: Routes = [
   {
@@ -21,6 +22,10 @@ export const routes: Routes = [
     path: 'servicios',
     component: ServiciosPageComponent
   },
+  {
+    path: 'registro',
+    component: RegistroPageComponent
+  },
   //TODO: LOGIN DEBE IR EN UNA CAPA DE SEGURIDAD
   {
     path: 'login',
@@ -28,11 +33,13 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardPageComponent
+    component: DashboardPageComponent,
+    ...canActivate(()=> redirectUnauthorizedTo(['registro']))
   },
   {
     path: 'taskManager',
-    component: TaskManager
+    component: TaskManager,
+    ...canActivate(()=> redirectUnauthorizedTo(['registro']))
   },
   //SEGURIDAD FIN CAPA
   {
