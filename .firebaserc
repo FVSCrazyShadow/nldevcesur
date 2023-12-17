@@ -1,14 +1,14 @@
 {
   "targets": {
-    "nldev-593d5": {
+    "nldv-aa1a9": {
       "hosting": {
         "appnldev": [
-          "nldev-593d5"
+          "nldv-aa1a9"
         ]
       }
     }
   },
   "projects": {
-    "default": "nldev-593d5"
+    "default": "nldv-aa1a9"
   }
 }
