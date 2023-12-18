@@ -1,4 +1,5 @@
 export default interface Usuario {
-  id?: number;
+  id: string;
+  idtarea: string;
   nombre: string;
 }

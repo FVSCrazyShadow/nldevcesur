@@ -93,6 +93,8 @@
       </div>
     </div>
 
+
+
     <!-- Lista usuarios -->
     <!-- <div class="col">
       <h3>Usuarios</h3>
@@ -128,11 +130,11 @@
     <!-- Lista tareas -->
     <div class="col">
       <h3>Tareas</h3>
-      <ul class="list-group">
+      <ul class="list-group" *ngIf="proyectoSeleccionado.tareas">
         <li class="list-group-item list-group-item-action" *ngFor="let tarea of proyectoSeleccionado.tareas"
           (click)="onTareaClick(tarea)">
           {{ tarea.nombre }}
-          {{ tarea.descripcion}}
+          {{ tarea.descripcion }}
         </li>
       </ul>
     </div>
@@ -140,10 +142,10 @@
     <!-- Lista usuarios -->
     <div class="col">
       <h3>Usuarios</h3>
-      <ul class="list-group">
-        <li class="list-group-item list-group-item-action" *ngFor="let usuario of tareaSeleccionada.usuarios"
-          (click)="onUsuarioClick(usuario)">
-          {{ usuario }}
+      <ul class="list-group" *ngIf="true">
+        <li class="list-group-item list-group-item-action"
+          (click)="1">
+          Proximamente disponible
         </li>
       </ul>
     </div>
@@ -159,12 +161,12 @@
     </div>
 
     <div class="col">
-      <button *ngIf="tareaSeleccionada.nombre" type="button" class="btn btn-danger" (click)="borrarTarea()">Borrar
+      <button *ngIf="tareaSeleccionada.nombre" type="button" class="btn btn-danger" (click)="borrarTarea(tareaSeleccionada)">Borrar
         tarea</button>
     </div>
 
     <div class="col">
-      <button *ngIf="usuarioSeleccionado" type="button" class="btn btn-danger" (click)="borrarUsuario()">Borrar
+      <button *ngIf="usuarioSeleccionado.nombre" type="button" class="btn btn-danger" (click)="borrarUsuario(usuarioSeleccionado)">Borrar
         Usuario</button>
     </div>
   </div>

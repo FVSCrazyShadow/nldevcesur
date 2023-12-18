@@ -2,9 +2,9 @@ import Proyecto from "./proyecto.interface";
 import Usuario from "./usuario.interface";
 
 export default interface Tarea {
-  id?: number;
+  id: string;
+  idProyecto: string;
   nombre: string;
-  proyecto: Proyecto;
-  usuarios: string[];
   descripcion: string;
+  usuarios?: Usuario[];
 }
