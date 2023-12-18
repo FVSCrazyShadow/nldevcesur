@@ -57,3 +57,10 @@ El comando ng serve -o no solo inicia el servidor de desarrollo, sino que tambi�
 - ng serve -o
 
 Este comando acelera el proceso de desarrollo al abrir la aplicación en el navegador de inmediato, lo que facilita la visualización de los cambios realizados en el código.
+
+
+#### Aplicación desplegada en servidor Europeo ####
+
+- Netlify:
+
+https://658087c6e9642c7ab29d7243--effervescent-profiterole-f58dc6.netlify.app/index
