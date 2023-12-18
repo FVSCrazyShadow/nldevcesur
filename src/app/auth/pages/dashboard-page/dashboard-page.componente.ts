@@ -3,12 +3,13 @@ import { HeadComponent } from '../../../head/head.component';
 import { FootComponent } from '../../../footer/foot/foot.component';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { LogoutBtnComponent } from '../../../logout/logoutbtn.component';
 
 @Component({
   selector: 'app-dashboard-page',
   templateUrl: 'dashboard-page.component.html',
   standalone: true,
-  imports: [HeadComponent, FootComponent, CommonModule]
+  imports: [HeadComponent, FootComponent, CommonModule, LogoutBtnComponent]
 })
 
 export class DashboardPageComponent implements OnInit {
@@ -42,15 +43,5 @@ export class DashboardPageComponent implements OnInit {
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
-  }
-
-  logOut() {
-    this.auth.logOut()
-    .then(response => {
-      console.log(response)
-    })
-    .catch(error =>{
-      console.log(error)
-    })
   }
 }

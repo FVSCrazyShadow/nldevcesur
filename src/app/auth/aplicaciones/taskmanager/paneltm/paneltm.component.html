@@ -1,25 +1,116 @@
 <div class="container mb-5 mt-5">
-  <!-- Botón para crear proyecto -->
-  <button type="button" class="btn btn-success mb-3" (click)="mostrarFormulario()">Crear Proyecto</button>
-
-  <!-- Formulario para crear proyecto (inicialmente oculto) -->
-  <div *ngIf="mostrarForm">
-    <h3>Nuevo Proyecto</h3>
-    <form (submit)="crearProyecto()">
-      <div class="form-group">
-        <label for="nombreProyecto">Nombre del Proyecto</label>
-        <input type="text" class="form-control" id="nombreProyecto" [(ngModel)]="nombreProyecto" name="nombreProyecto"
-          required>
-      </div>
-      <div class="form-group">
-        <label for="descripcionProyecto">Descripción del Proyecto</label>
-        <textarea class="form-control" id="descripcionProyecto" [(ngModel)]="descripcionProyecto"
-          name="descripcionProyecto" required></textarea>
-      </div>
+  <div class="row">
+    <!-- Botón para crear proyecto -->
+    <div class="col">
+      <button type="button" class="btn btn-primary mb-3" (click)="mostrarFormulario()">Crear Proyecto</button>
+      <!-- Formulario para crear proyecto (inicialmente oculto) -->
+      <div *ngIf="mostrarForm">
+        <h3>Nuevo Proyecto</h3>
+        <form (submit)="crearProyecto()">
+          <div class="form-group">
+            <label for="nombreProyecto">Nombre del Proyecto</label>
+            <input type="text" class="form-control" id="nombreProyecto" [(ngModel)]="nombreProyecto"
+              name="nombreProyecto" required>
+          </div>
+          <div class="form-group">
+            <label for="descripcionProyecto">Descripción del Proyecto</label>
+            <textarea class="form-control" id="descripcionProyecto" [(ngModel)]="descripcionProyecto"
+              name="descripcionProyecto" required></textarea>
+          </div>
           <button type="submit" class="btn btn-primary mr-2">Crear</button>
-          <button type="button" class="btn btn-danger" (click)="cancelarFormProyecto()">Cancelar proyecto</button>
-    </form>
+          <button type="button" class="btn btn-danger" (click)="cancelarFormProyecto()">Cancelar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Lista proyectos -->
+    <!-- Columna de Proyectos -->
+    <!-- <div class="col">
+      <h3>Proyectos</h3>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-action" *ngFor="let proyecto of proyectos"
+          (click)="onProyectoClick(proyecto)">
+          {{ proyecto.nombre }}
+          {{proyecto.descripcion}}
+        </li>
+      </ul>
+    </div> -->
+
+    <!-- Botón para crear tarea (inicialmente oculto) -->
+    <div class="col" *ngIf="proyectoSeleccionado.nombre">
+      <button type="button" class="btn btn-primary mb-3" (click)="mostrarFormularioTarea()">Crear Tarea para {{
+        proyectoSeleccionado.nombre }}</button>
+
+      <!-- Formulario para crear tarea (inicialmente oculto) -->
+      <div *ngIf="mostrarFormTarea">
+        <h3>Añadir tarea a: {{ proyectoSeleccionado.nombre }}</h3>
+        <form (submit)="crearTarea()">
+          <div class="form-group">
+            <label for="nombreTarea">Nombre de la Tarea</label>
+            <input type="text" class="form-control" id="nombreTarea" [(ngModel)]="nombreTarea" name="nombreTarea"
+              required>
+            <label for="descripcionTarea">Descripción</label>
+            <input type="text" class="form-control" id="descripcionTarea" [(ngModel)]="descripcionTarea"
+              name="descripcionTarea" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Crear</button>
+          <button type="button" class="btn btn-danger ml-2" (click)="cancelarFormTarea()">Cancelar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Lista tareas -->
+    <!-- <div class="col">
+      <h3>Tareas</h3>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-action" *ngFor="let tarea of proyectoSeleccionado.tareas"
+          (click)="onTareaClick(tarea)">
+          {{ tarea.nombre }}
+          {{ tarea.descripcion}}
+        </li>
+      </ul>
+    </div> -->
+
+    <!-- Columna de Usuarios -->
+    <!-- Botón para añadir usuario (inicialmente oculto) -->
+    <div class="col" *ngIf="tareaSeleccionada.nombre">
+      <button type="button" class="btn btn-primary mb-3" (click)="mostrarFormularioUsuario()">Añadir Usuario a la tarea
+        {{
+        tareaSeleccionada.nombre }}</button>
+
+      <!-- Formulario para crear tarea (inicialmente oculto) -->
+      <div *ngIf="mostrarFormUsuario">
+        <h3>Añadir usuario a la tarea: {{ tareaSeleccionada.nombre }}</h3>
+        <form (submit)="annadirUsuario()">
+          <div class="form-group">
+            <label for="nombreTarea">Nombre del Usuario</label>
+            <input type="text" class="form-control" id="nombreUsuario" [(ngModel)]="nombreUsuario" name="nombreUsuario"
+              required>
+          </div>
+          <button type="submit" class="btn btn-primary">Añadir</button>
+          <button type="button" class="btn btn-danger ml-2" (click)="cancelarFormUsuario()">Cancelar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Lista usuarios -->
+    <!-- <div class="col">
+      <h3>Usuarios</h3>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-action" *ngFor="let usuario of usuarios"
+          (click)="onUsuarioClick(usuario)">
+          {{ usuario }}
+        </li>
+      </ul>
+    </div>
   </div>
+  <div class="mt-2">
+    <button type="button" class="btn btn-danger" (click)="logOut()">Log Out</button>
+  </div> -->
+  </div>
+</div>
+
+<div class="container mb-5 mt-5">
 
   <div class="row">
     <!-- Columna de Proyectos -->
@@ -34,29 +125,7 @@
       </ul>
     </div>
 
-    <!-- Columna de Tareas -->
-    <!-- Botón para crear tarea (inicialmente oculto) -->
-    <div *ngIf="proyectoSeleccionado.nombre">
-      <button type="button" class="btn btn-info mt-3" (click)="mostrarFormularioTarea()">Crear Tarea para {{
-        proyectoSeleccionado.nombre }}</button>
-
-      <!-- Formulario para crear tarea (inicialmente oculto) -->
-      <div *ngIf="mostrarFormTarea">
-        <h3>Nueva Tarea para {{ proyectoSeleccionado.nombre }}</h3>
-        <form (submit)="crearTarea()">
-          <div class="form-group">
-            <label for="nombreTarea">Nombre de la Tarea</label>
-            <input type="text" class="form-control" id="nombreTarea" [(ngModel)]="nombreTarea" name="nombreTarea"
-              required>
-            <label for="descripcionTarea">Descripción</label>
-            <input type="text" class="form-control" id="descripcionTarea" [(ngModel)]="descripcionTarea"
-              name="descripcionTarea" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Crear</button>
-          <button type="button" class="btn btn-danger ml-2" (click)="cancelarFormTarea()">Cancelar tarea</button>
-        </form>
-      </div>
-    </div>
+    <!-- Lista tareas -->
     <div class="col">
       <h3>Tareas</h3>
       <ul class="list-group">
@@ -68,40 +137,37 @@
       </ul>
     </div>
 
-    <!-- Columna de Usuarios -->
-    <!-- Botón para añadir usuario (inicialmente oculto) -->
-    <div *ngIf="proyectoSeleccionado.nombre">
-      <button type="button" class="btn btn-info mt-3" (click)="mostrarFormularioTarea()">Crear Tarea para {{
-        proyectoSeleccionado.nombre }}</button>
-
-      <!-- Formulario para crear tarea (inicialmente oculto) -->
-      <div *ngIf="mostrarFormTarea">
-        <h3>Nueva Tarea para {{ proyectoSeleccionado.nombre }}</h3>
-        <form (submit)="crearTarea()">
-          <div class="form-group">
-            <label for="nombreTarea">Nombre de la Tarea</label>
-            <input type="text" class="form-control" id="nombreTarea" [(ngModel)]="nombreTarea" name="nombreTarea"
-              required>
-            <label for="descripcionTarea">Descripción</label>
-            <input type="text" class="form-control" id="descripcionTarea" [(ngModel)]="descripcionTarea"
-              name="descripcionTarea" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Crear</button>
-          <button type="button" class="btn btn-danger ml-2" (click)="cancelarFormTarea()">Cancelar tarea</button>
-        </form>
-      </div>
-    </div>
+    <!-- Lista usuarios -->
     <div class="col">
       <h3>Usuarios</h3>
       <ul class="list-group">
-        <li class="list-group-item list-group-item-action" *ngFor="let usuario of usuarios"
+        <li class="list-group-item list-group-item-action" *ngFor="let usuario of tareaSeleccionada.usuarios"
           (click)="onUsuarioClick(usuario)">
           {{ usuario }}
         </li>
       </ul>
     </div>
   </div>
-  <div class="mt-2">
-    <button type="button" class="btn btn-danger" (click)="logOut()">Log Out</button>
+</div>
+
+<div class="container mb-5 mt-5">
+  <div class="row">
+    <div class="col">
+      <button *ngIf="proyectoSeleccionado.nombre" type="button" class="btn btn-danger"
+        (click)="borrarProyecto(proyectoSeleccionado)">Borrar
+        Proyecto</button>
+    </div>
+
+    <div class="col">
+      <button *ngIf="tareaSeleccionada.nombre" type="button" class="btn btn-danger" (click)="borrarTarea()">Borrar
+        tarea</button>
+    </div>
+
+    <div class="col">
+      <button *ngIf="usuarioSeleccionado" type="button" class="btn btn-danger" (click)="borrarUsuario()">Borrar
+        Usuario</button>
+    </div>
   </div>
+
+  <app-logout-btn></app-logout-btn>
 </div>
